@@ -69,7 +69,7 @@ class TopOfEverything(FloatLayout):
         pass
 
     def on_touch_up(self, touch):
-        print("POS", touch.pos[0]/800)
+        print("POS", touch.pos[1]/600)
 
 
 class MainMenu(Screen):
@@ -128,14 +128,26 @@ class PButton(ButtonBehavior, Widget):
         self.idx = kwargs['idx']
         del(kwargs['idx'])
         super(PButton, self).__init__(**kwargs)
-
-        with self.canvas:
-            Color(random.random(), random.random(), random.random(), 1)
-            self.rect = Rectangle(pos=self.pos,
-                                  size=self.size)
                         
     def key_press(self):
         print("Key", self.idx, "pressed.")
+
+    def toggle_color(self, pressed):
+        if pressed:
+            if self.idx >= 37: # Pretas
+                height = self.size[1]*.9
+                y = self.pos[1]
+            else: # Brancas
+                height = self.size[1] * 2.25
+                y = self.parent.height * .02166
+                
+            with self.canvas:
+                Color(.2, .7, 1, .7)
+                self.rect = Rectangle(size=(self.size[0], height),
+                                      pos=(self.pos[0], y))
+        else:
+            self.canvas.remove(self.rect)
+        
 
 
 
