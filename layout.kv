@@ -1,0 +1,43 @@
+# -*- coding: cp1252 -*-
+#: import Clock kivy.clock.Clock
+
+
+<TopOfEverything>:
+    canvas:
+        Color:
+            rgba: .2,.7,1,.7
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    MyScreenManager:
+        MainMenu:
+
+<MainMenu>:
+    name: 'MainMenu'
+    on_size: Clock.schedule_once(self.create_keyboard)
+    FloatLayout:
+        id: menu_background
+        pos: root.pos
+        size: root.size
+        Image:
+            id: piano_image
+            source: 'piano.jpg'
+            size_hint: 1, None
+            height: root.width / self.image_ratio
+            allow_stretch: True
+##            canvas:
+##                Color:
+##                    rgba: .2,.2,.2,.7
+##                Rectangle:
+##                    pos: self.pos[0] + .015 * self.size[0], self.pos[1]
+##                    size: self.size[0]*.97, self.size[1] * 0.23
+
+<PButton>:
+    on_release: self.key_press()
+
+
+                    
+
+
+
+            
