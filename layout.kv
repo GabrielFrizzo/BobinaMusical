@@ -25,15 +25,13 @@
             size_hint: 1, None
             height: root.width / self.image_ratio
             allow_stretch: True
-##            canvas:
-##                Color:
-##                    rgba: .2,.2,.2,.7
-##                Rectangle:
-##                    pos: self.pos[0] + .015 * self.size[0], self.pos[1]
-##                    size: self.size[0]*.97, self.size[1] * 0.23
 
 <PButton>:
-    on_release: self.key_press()
+    always_release: True
+    on_press: self.toggle_color(True)
+    on_release:
+        self.key_press()
+        self.toggle_color(False)
 
 
                     
